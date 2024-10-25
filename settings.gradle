@@ -1,0 +1,18 @@
+rootProject.name = "EffectDebugger"
+
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+        maven {
+            url = "https://repo.papermc.io/repository/maven-public/"
+        }
+        maven {
+            url = "https://repo.extendedclip.com/content/repositories/placeholderapi/"
+        }
+        maven {
+            url = "https://mymavenrepo.com/repo/SjKIru68icwwmC0qOtV7/"
+        }
+    }
+}
+
+include "paper"
