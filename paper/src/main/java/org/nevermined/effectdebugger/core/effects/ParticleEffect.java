@@ -1,6 +1,5 @@
 package org.nevermined.effectdebugger.core.effects;
 
-import me.wyne.wutils.log.Log;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;

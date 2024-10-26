@@ -1,3 +1,17 @@
+### GUI
+
+## Scroll Gui
+scroll-gui-previous: "↑ Назад"
+scroll-gui-next: "↓ Вперед"
+scroll-gui-back: "&c&lНазад"
+
+## Main Gui
+main-gui-header: "Effect debugger"
+main-gui-sounds: "Звуки"
+
+## Queues Gui
+sounds-gui-header: "Звуки"
+
 ### Messages
 
 ## Success

@@ -15,6 +15,8 @@ import org.nevermined.effectdebugger.command.module.CommandModule;
 import org.nevermined.effectdebugger.config.GlobalConfig;
 import org.nevermined.effectdebugger.config.module.ConfigModule;
 import org.nevermined.effectdebugger.core.module.EffectModule;
+import org.nevermined.effectdebugger.gui.cache.ItemCacheProvider;
+import org.nevermined.effectdebugger.gui.module.GuiModule;
 import org.nevermined.effectdebugger.module.PluginModule;
 
 import java.io.File;
@@ -48,6 +50,7 @@ public final class EffectDebugger extends JavaPlugin {
                     new PluginModule(this),
                     new ConfigModule(),
                     new EffectModule(),
+                    new GuiModule(),
                     new CommandModule()
             );
         } catch (CreationException e)
@@ -103,6 +106,7 @@ public final class EffectDebugger extends JavaPlugin {
         reloadConfig();
         Config.global.reloadConfig(getConfig());
         initializeI18n();
+        injector.getInstance(ItemCacheProvider.class).reloadItems();
     }
 
     public static GlobalConfig getGlobalConfig()
