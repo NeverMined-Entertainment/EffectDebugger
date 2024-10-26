@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+@SuppressWarnings("DataFlowIssue")
 public class TheEffectSubCommand extends EffectSubCommand {
 
     public TheEffectSubCommand(EffectProvider effectProvider) {
@@ -30,7 +31,6 @@ public class TheEffectSubCommand extends EffectSubCommand {
                                 .executesPlayer(this::executeDataEffectEmmit)));
     }
 
-    @SuppressWarnings("DataFlowIssue")
     private Collection<String> getDataSuggestions(SuggestionInfo<CommandSender> info)
     {
         Set<String> suggestions = new HashSet<>();
@@ -45,8 +45,7 @@ public class TheEffectSubCommand extends EffectSubCommand {
         return DataParserProvider.getDataParser(effect.getEffect().getData()).getSuggestions();
     }
 
-    @SuppressWarnings("DataFlowIssue")
-    protected void executeDataEffectEmmit(Player sender, CommandArguments args) throws WrapperCommandSyntaxException
+    private void executeDataEffectEmmit(Player sender, CommandArguments args) throws WrapperCommandSyntaxException
     {
         String effectKey = getEffectKey(sender, args);
         String data = args.getOrDefaultRaw("data", "");

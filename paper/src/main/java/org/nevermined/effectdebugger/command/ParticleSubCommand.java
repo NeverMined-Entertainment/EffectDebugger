@@ -18,6 +18,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+@SuppressWarnings("DataFlowIssue")
 public class ParticleSubCommand extends EffectSubCommand {
 
     private final ParticleEffectConfig config;
@@ -40,13 +41,15 @@ public class ParticleSubCommand extends EffectSubCommand {
                                             config.getDefaultParticleSpawnOffset().getY(),
                                             config.getDefaultParticleSpawnOffset().getZ())))
                                         .executesPlayer(this::executeCountOffsetParticleEmmit)
-                                        .then(new StringArgument("data")
-                                                .replaceSuggestions(ArgumentSuggestions.stringCollection(this::getDataSuggestions))
-                                                .executesPlayer(this::executeCountOffsetDataEffectEmmit))))
+                                        .then(new DoubleArgument("extra")
+                                                .replaceSuggestions(ArgumentSuggestions.strings("[extra]"))
+                                                .executesPlayer(this::executeCountOffsetExtraParticleEmmit)
+                                                .then(new StringArgument("data")
+                                                        .replaceSuggestions(ArgumentSuggestions.stringCollection(this::getDataSuggestions))
+                                                        .executesPlayer(this::executeCountOffsetExtraDataEffectEmmit)))))
 );
     }
 
-    @SuppressWarnings("DataFlowIssue")
     private Collection<String> getDataSuggestions(SuggestionInfo<CommandSender> info)
     {
         Set<String> suggestions = new HashSet<>();
@@ -61,16 +64,14 @@ public class ParticleSubCommand extends EffectSubCommand {
         return DataParserProvider.getDataParser(effect.getParticle().getDataType()).getSuggestions();
     }
 
-    @SuppressWarnings("DataFlowIssue")
-    protected void executeCountParticleEmmit(Player sender, CommandArguments args) throws WrapperCommandSyntaxException
+    private void executeCountParticleEmmit(Player sender, CommandArguments args) throws WrapperCommandSyntaxException
     {
         String effectKey = getEffectKey(sender, args);
         int count = args.getByClassOrDefault("count", int.class, config.getDefaultParticleCount());
         getEffectProvider().getParticleEffect(effectKey).emmit(sender, count);
     }
 
-    @SuppressWarnings("DataFlowIssue")
-    protected void executeCountOffsetParticleEmmit(Player sender, CommandArguments args) throws WrapperCommandSyntaxException
+    private void executeCountOffsetParticleEmmit(Player sender, CommandArguments args) throws WrapperCommandSyntaxException
     {
         String effectKey = getEffectKey(sender, args);
         int count = args.getByClassOrDefault("count", int.class, config.getDefaultParticleCount());
@@ -79,16 +80,26 @@ public class ParticleSubCommand extends EffectSubCommand {
         getEffectProvider().getParticleEffect(effectKey).emmit(sender, offset.toVector(), count);
     }
 
-    @SuppressWarnings("DataFlowIssue")
-    protected void executeCountOffsetDataEffectEmmit(Player sender, CommandArguments args) throws WrapperCommandSyntaxException
+    private void executeCountOffsetExtraParticleEmmit(Player sender, CommandArguments args) throws WrapperCommandSyntaxException
     {
         String effectKey = getEffectKey(sender, args);
         int count = args.getByClassOrDefault("count", int.class, config.getDefaultParticleCount());
         Vector defaultOffset = config.getDefaultParticleSpawnOffset();
         Location offset = args.getByClassOrDefault("offset", Location.class, new Location(null, defaultOffset.getX(), defaultOffset.getY(), defaultOffset.getZ()));
+        double extra = args.getByClassOrDefault("extra", double.class, config.getDefaultParticleExtra());
+        getEffectProvider().getParticleEffect(effectKey).emmit(sender, offset.toVector(), count, extra);
+    }
+
+    private void executeCountOffsetExtraDataEffectEmmit(Player sender, CommandArguments args) throws WrapperCommandSyntaxException
+    {
+        String effectKey = getEffectKey(sender, args);
+        int count = args.getByClassOrDefault("count", int.class, config.getDefaultParticleCount());
+        Vector defaultOffset = config.getDefaultParticleSpawnOffset();
+        Location offset = args.getByClassOrDefault("offset", Location.class, new Location(null, defaultOffset.getX(), defaultOffset.getY(), defaultOffset.getZ()));
+        double extra = args.getByClassOrDefault("extra", double.class, config.getDefaultParticleExtra());
         String data = args.getOrDefaultRaw("data", "");
         ParticleEffect effect = getEffectProvider().getParticleEffect(effectKey);
-        getEffectProvider().getParticleEffect(effectKey).emmit(sender, offset.toVector(), count, DataParserProvider.getDataParser(effect.getParticle().getDataType()).getData(data));
+        getEffectProvider().getParticleEffect(effectKey).emmit(sender, offset.toVector(), count, extra, DataParserProvider.getDataParser(effect.getParticle().getDataType()).getData(data));
     }
 
 }

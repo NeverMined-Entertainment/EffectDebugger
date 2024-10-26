@@ -44,6 +44,7 @@ public class ParticleEffect implements Effect {
         builder.append(" ").append(getSuggestion());
         builder.append(" ").append(EffectDebugger.getGlobalConfig().particleEffectConfig().getDefaultParticleCount());
         builder.append(" ").append(EffectDebugger.getGlobalConfig().particleEffectConfig().getDefaultParticleSpawnOffset().toString().replaceAll(",", " "));
+        builder.append(" ").append(EffectDebugger.getGlobalConfig().particleEffectConfig().getDefaultParticleExtra());
         if (isDataRequired())
             builder.append(" ");
         return builder.toString();
@@ -75,8 +76,18 @@ public class ParticleEffect implements Effect {
         player.spawnParticle(particle, VectorUtils.applyOffset(player.getEyeLocation(), offset), count);
     }
 
+    public void emmit(Player player, Vector offset, int count, double extra)
+    {
+        player.spawnParticle(particle, VectorUtils.applyOffset(player.getEyeLocation(), offset), count, 0f, 0f, 0f, extra);
+    }
+
     public <T> void emmit(Player player, Vector offset, int count, T data)
     {
         player.spawnParticle(particle, VectorUtils.applyOffset(player.getEyeLocation(), offset), count, data);
+    }
+
+    public <T> void emmit(Player player, Vector offset, int count, double extra, T data)
+    {
+        player.spawnParticle(particle, VectorUtils.applyOffset(player.getEyeLocation(), offset), count, 0f, 0f, 0f, extra, data);
     }
 }

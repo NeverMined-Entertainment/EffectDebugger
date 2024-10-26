@@ -14,5 +14,7 @@ public class ParticleEffectConfig {
     private Vector defaultParticleSpawnOffset = new Vector(2f, 0f, 1.5f);
     @ConfigEntry(section = "Effects.Particles")
     private int defaultParticleCount = 10;
+    @ConfigEntry(section = "Effects.Particles")
+    private double defaultParticleExtra = 1.0d;
 
 }
