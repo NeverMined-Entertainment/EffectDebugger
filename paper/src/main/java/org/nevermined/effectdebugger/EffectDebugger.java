@@ -11,6 +11,9 @@ import me.wyne.wutils.log.ConfigurableLogConfig;
 import me.wyne.wutils.log.Log;
 import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.nevermined.effectdebugger.command.module.CommandModule;
+import org.nevermined.effectdebugger.config.GlobalConfig;
+import org.nevermined.effectdebugger.config.module.ConfigModule;
 import org.nevermined.effectdebugger.core.module.EffectModule;
 import org.nevermined.effectdebugger.module.PluginModule;
 
@@ -19,6 +22,11 @@ import java.util.concurrent.Executors;
 
 public final class EffectDebugger extends JavaPlugin {
 
+    private static EffectDebugger instance;
+
+    private Injector injector;
+    private GlobalConfig globalConfig;
+
     @Override
     public void onLoad() {
         CommandAPI.onLoad(new CommandAPIBukkitConfig(this));
@@ -26,6 +34,7 @@ public final class EffectDebugger extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        instance = this;
         CommandAPI.onEnable();
 
         saveDefaultConfig();
@@ -34,10 +43,12 @@ public final class EffectDebugger extends JavaPlugin {
         initializeI18n();
 
         try {
-            Guice.createInjector(
+            injector = Guice.createInjector(
                     Stage.PRODUCTION,
                     new PluginModule(this),
-                    new EffectModule()
+                    new ConfigModule(),
+                    new EffectModule(),
+                    new CommandModule()
             );
         } catch (CreationException e)
         {
@@ -45,6 +56,13 @@ public final class EffectDebugger extends JavaPlugin {
         }
 
         initializeConfig();
+
+        try {
+            globalConfig = injector.getInstance(GlobalConfig.class);
+        } catch (ConfigurationException | ProvisionException e)
+        {
+            Log.global.exception("Guice configuration/provision exception", e);
+        }
     }
 
     @Override
@@ -87,4 +105,8 @@ public final class EffectDebugger extends JavaPlugin {
         initializeI18n();
     }
 
+    public static GlobalConfig getGlobalConfig()
+    {
+        return instance.globalConfig;
+    }
 }

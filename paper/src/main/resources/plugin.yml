@@ -5,4 +5,12 @@ api-version: '1.16'
 author: Wyne
 description: Debug minecraft sounds, particles and effects
 website: https://github.com/NeverMined-Entertainment/EffectDebugger
-
+permissions:
+  edebug.sound:
+    description: Allows to debug sounds
+  edebug.particle:
+    description: Allows to debug particles
+  edebug.effect:
+    description: Allows to debug effects
+  edebug.entityeffect:
+    description: Allows to debug entity effects

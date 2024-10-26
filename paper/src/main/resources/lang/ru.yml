@@ -1,0 +1,7 @@
+### Messages
+
+## Success
+success-plugin-reloaded: "&aПлагин перезагружен!"
+
+## Errors
+error-effect-not-found: "&cЭффект <effect-key> не существует!"

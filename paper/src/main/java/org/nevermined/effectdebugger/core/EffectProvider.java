@@ -1,6 +1,9 @@
 package org.nevermined.effectdebugger.core;
 
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import lombok.Getter;
+import org.jetbrains.annotations.Nullable;
 import org.nevermined.effectdebugger.core.effects.*;
 import org.nevermined.effectdebugger.core.loaders.*;
 
@@ -8,14 +11,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Singleton
+@Getter
 public class EffectProvider {
-
     private final Map<String, SoundEffect> soundEffectMap = new HashMap<>();
     private final Map<String, ParticleEffect> particleEffectMap = new HashMap<>();
     private final Map<String, TheEffect> theEffectMap = new HashMap<>();
     private final Map<String, EntityEffect> entityEffectMap = new HashMap<>();
     private final Map<String, Effect> effectMap = new HashMap<>();
 
+    @Inject
     public EffectProvider() {
         loadEffects();
     }
@@ -32,48 +36,28 @@ public class EffectProvider {
         effectMap.putAll(entityEffectMap);
     }
 
-    public Effect getEffect(String identifier)
+    public @Nullable Effect getEffect(String identifier)
     {
         return effectMap.get(identifier);
     }
 
-    public SoundEffect getSoundEffect(String identifier)
+    public @Nullable SoundEffect getSoundEffect(String identifier)
     {
         return soundEffectMap.get(identifier);
     }
 
-    public ParticleEffect getParticleEffect(String identifier)
+    public @Nullable ParticleEffect getParticleEffect(String identifier)
     {
         return particleEffectMap.get(identifier);
     }
 
-    public TheEffect getTheEffect(String identifier)
+    public @Nullable TheEffect getTheEffect(String identifier)
     {
         return theEffectMap.get(identifier);
     }
 
-    public EntityEffect getEntityEffect(String identifier)
+    public @Nullable EntityEffect getEntityEffect(String identifier)
     {
         return entityEffectMap.get(identifier);
-    }
-
-    public Map<String, SoundEffect> getSoundEffectMap() {
-        return soundEffectMap;
-    }
-
-    public Map<String, ParticleEffect> getParticleEffectMap() {
-        return particleEffectMap;
-    }
-
-    public Map<String, TheEffect> getTheEffectMap() {
-        return theEffectMap;
-    }
-
-    public Map<String, EntityEffect> getEntityEffectMap() {
-        return entityEffectMap;
-    }
-
-    public Map<String, Effect> getEffectMap() {
-        return effectMap;
     }
 }
