@@ -4,20 +4,22 @@ import dev.jorel.commandapi.CommandAPIBukkit;
 import dev.jorel.commandapi.arguments.Argument;
 import dev.jorel.commandapi.exceptions.WrapperCommandSyntaxException;
 import dev.jorel.commandapi.executors.CommandArguments;
+import lombok.AccessLevel;
+import lombok.Getter;
 import me.wyne.wutils.i18n.I18n;
 import me.wyne.wutils.i18n.language.replacement.Placeholder;
 import org.bukkit.entity.Player;
 import org.nevermined.effectdebugger.core.EffectProvider;
 
+@Getter
 public abstract class EffectSubCommand {
 
-    private final EffectProvider effectProvider;
+    protected Argument<String> subCommand;
+    @Getter(AccessLevel.PROTECTED) private final EffectProvider effectProvider;
 
     public EffectSubCommand(EffectProvider effectProvider) {
         this.effectProvider = effectProvider;
     }
-
-    public abstract Argument<String> getSubCommand();
 
     @SuppressWarnings("DataFlowIssue")
     protected void executeEffectEmmit(Player sender, CommandArguments args) throws WrapperCommandSyntaxException
@@ -37,7 +39,4 @@ public abstract class EffectSubCommand {
         return effectKey;
     }
 
-    protected EffectProvider getEffectProvider() {
-        return effectProvider;
-    }
 }

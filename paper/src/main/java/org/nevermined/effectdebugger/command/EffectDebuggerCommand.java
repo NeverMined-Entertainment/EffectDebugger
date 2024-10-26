@@ -17,6 +17,7 @@ public class EffectDebuggerCommand {
     private final SoundSubCommand soundSubCommand;
     private final ParticleSubCommand particleSubCommand;
     private final TheEffectSubCommand theEffectSubCommand;
+    private final EntityEffectSubCommand entityEffectSubCommand;
 
     @Inject
     public EffectDebuggerCommand(EffectDebugger plugin, EffectProvider effectProvider, GlobalConfig globalConfig) {
@@ -24,6 +25,7 @@ public class EffectDebuggerCommand {
         soundSubCommand = new SoundSubCommand(effectProvider, globalConfig.soundEffectConfig());
         particleSubCommand = new ParticleSubCommand(effectProvider, globalConfig.particleEffectConfig());
         theEffectSubCommand = new TheEffectSubCommand(effectProvider);
+        entityEffectSubCommand = new EntityEffectSubCommand(effectProvider);
         registerMainCommand();
     }
 
@@ -33,6 +35,7 @@ public class EffectDebuggerCommand {
                 .then(soundSubCommand.getSubCommand())
                 .then(particleSubCommand.getSubCommand())
                 .then(theEffectSubCommand.getSubCommand())
+                .then(entityEffectSubCommand.getSubCommand())
                 .then(new LiteralArgument("reload")
                         .withPermission(CommandPermission.OP)
                         .executes((sender, args) -> {

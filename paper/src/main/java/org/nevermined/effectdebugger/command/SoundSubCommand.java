@@ -11,7 +11,6 @@ import org.nevermined.effectdebugger.core.EffectProvider;
 public class SoundSubCommand extends EffectSubCommand {
 
     private final SoundEffectConfig config;
-    private final Argument<String> subCommand;
 
     public SoundSubCommand(EffectProvider effectProvider, SoundEffectConfig soundEffectConfig) {
         super(effectProvider);
@@ -28,12 +27,6 @@ public class SoundSubCommand extends EffectSubCommand {
                                 .then(new FloatArgument("pitch")
                                         .replaceSuggestions(ArgumentSuggestions.strings("[pitch]"))
                                         .executesPlayer(this::executeVolumePitchSoundEmmit))));
-    }
-
-    @Override
-    public Argument<String> getSubCommand()
-    {
-        return subCommand;
     }
 
     @SuppressWarnings("DataFlowIssue")

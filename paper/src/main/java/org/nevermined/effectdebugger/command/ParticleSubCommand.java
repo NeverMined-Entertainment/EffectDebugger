@@ -12,7 +12,6 @@ import org.nevermined.effectdebugger.core.EffectProvider;
 
 public class ParticleSubCommand extends EffectSubCommand {
 
-    private final Argument<String> subCommand;
     private final ParticleEffectConfig config;
 
     public ParticleSubCommand(EffectProvider effectProvider, ParticleEffectConfig particleEffectConfig) {
@@ -33,12 +32,6 @@ public class ParticleSubCommand extends EffectSubCommand {
                                             config.getDefaultParticleSpawnOffset().getY(),
                                             config.getDefaultParticleSpawnOffset().getZ())))
                                         .executesPlayer(this::executeCountOffsetParticleEmmit))));
-    }
-
-    @Override
-    public Argument<String> getSubCommand()
-    {
-        return subCommand;
     }
 
     @SuppressWarnings("DataFlowIssue")

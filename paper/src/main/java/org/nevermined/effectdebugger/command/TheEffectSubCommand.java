@@ -6,8 +6,6 @@ import org.nevermined.effectdebugger.core.EffectProvider;
 
 public class TheEffectSubCommand extends EffectSubCommand {
 
-    private final Argument<String> subCommand;
-
     public TheEffectSubCommand(EffectProvider effectProvider) {
         super(effectProvider);
         subCommand = new LiteralArgument("effect")
@@ -18,9 +16,4 @@ public class TheEffectSubCommand extends EffectSubCommand {
                         .executesPlayer(this::executeEffectEmmit));
     }
 
-    @Override
-    public Argument<String> getSubCommand()
-    {
-        return subCommand;
-    }
 }
