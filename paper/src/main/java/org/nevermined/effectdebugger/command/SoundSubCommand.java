@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.nevermined.effectdebugger.config.SoundEffectConfig;
 import org.nevermined.effectdebugger.core.EffectProvider;
 
+@SuppressWarnings("DataFlowIssue")
 public class SoundSubCommand extends EffectSubCommand {
 
     private final SoundEffectConfig config;
@@ -29,16 +30,14 @@ public class SoundSubCommand extends EffectSubCommand {
                                         .executesPlayer(this::executeVolumePitchSoundEmmit))));
     }
 
-    @SuppressWarnings("DataFlowIssue")
-    protected void executeVolumeSoundEmmit(Player sender, CommandArguments args) throws WrapperCommandSyntaxException
+    private void executeVolumeSoundEmmit(Player sender, CommandArguments args) throws WrapperCommandSyntaxException
     {
         String effectKey = getEffectKey(sender, args);
         float volume = args.getByClassOrDefault("volume", float.class, config.getDefaultVolume());
         getEffectProvider().getSoundEffect(effectKey).emmit(sender, volume, config.getDefaultPitch());
     }
 
-    @SuppressWarnings("DataFlowIssue")
-    protected void executeVolumePitchSoundEmmit(Player sender, CommandArguments args) throws WrapperCommandSyntaxException
+    private void executeVolumePitchSoundEmmit(Player sender, CommandArguments args) throws WrapperCommandSyntaxException
     {
         String effectKey = getEffectKey(sender, args);
         float volume = args.getByClassOrDefault("volume", float.class, config.getDefaultVolume());

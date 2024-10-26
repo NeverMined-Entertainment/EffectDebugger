@@ -1,7 +1,31 @@
+### GUI
+
+## Scroll Gui
+scroll-gui-previous: "↑ Backward"
+scroll-gui-next: "↓ Forward"
+scroll-gui-back: "&c&lBack"
+
+## Main Gui
+main-gui-header: "Effect Debugger"
+main-gui-sounds: "Sounds"
+main-gui-particles: "Particles"
+main-gui-effects: "Effects"
+main-gui-entity-effects: "Entity Effects"
+
+## Effects Gui
+sounds-gui-header: "Sounds"
+particles-gui-header: "Particles"
+effects-gui-header: "Effects"
+entity-effects-gui-header: "Entity Effects"
+
 ### Messages
+
+## Info
+info-click-to-suggest: "&aClick to use"
 
 ## Success
 success-plugin-reloaded: "&aPlugin reloaded!"
 
 ## Errors
 error-effect-not-found: "&cEffect <effect-key> doesn't exist!"
+error-data-required: "&cAdditional data required: <command>"

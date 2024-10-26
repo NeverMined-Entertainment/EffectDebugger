@@ -11,9 +11,7 @@ public class SoundLoader implements EffectLoader<SoundEffect> {
     public Map<String, SoundEffect> loadEffects() {
         Map<String, SoundEffect> sounds = new HashMap<>();
         for (Sound sound : Sound.values())
-        {
             sounds.put(sound.toString(), new SoundEffect(sound));
-        }
         return sounds;
     }
 

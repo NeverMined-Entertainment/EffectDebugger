@@ -1,10 +1,12 @@
 package org.nevermined.effectdebugger.core.effects;
 
+import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
 
+@SuppressWarnings("LombokGetterMayBeUsed")
 public class TheEffect implements Effect {
-    private final org.bukkit.Effect effect;
+    @Getter private final org.bukkit.Effect effect;
     private final String[] optionalData = new String[2];
 
     public TheEffect(org.bukkit.Effect effect) {
@@ -21,6 +23,26 @@ public class TheEffect implements Effect {
     @Override
     public String[] getOptionalData() {
         return optionalData;
+    }
+
+    @Override
+    public boolean isDataRequired() {
+        return effect.getData() != null;
+    }
+
+    @Override
+    public EffectType getType() {
+        return EffectType.THE_EFFECT;
+    }
+
+    @Override
+    public String getCommand() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("edebug ").append(getType().getEffectType());
+        builder.append(" ").append(getSuggestion());
+        if (isDataRequired())
+            builder.append(" ");
+        return builder.toString();
     }
 
     @Override

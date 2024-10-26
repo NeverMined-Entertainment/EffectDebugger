@@ -11,8 +11,10 @@ import org.bukkit.util.Vector;
 public class ParticleEffectConfig {
 
     @ConfigEntry(section = "Effects.Particles")
-    private Vector defaultParticleSpawnOffset = new Vector(-1.5f, 0f, 1.5f);
+    private Vector defaultParticleSpawnOffset = new Vector(2f, 0f, 1.5f);
     @ConfigEntry(section = "Effects.Particles")
     private int defaultParticleCount = 10;
+    @ConfigEntry(section = "Effects.Particles")
+    private double defaultParticleExtra = 1.0d;
 
 }
