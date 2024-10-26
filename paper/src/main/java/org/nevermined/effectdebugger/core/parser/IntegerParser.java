@@ -5,7 +5,7 @@ import java.util.Collection;
 
 public class IntegerParser implements StringDataParser<Integer> {
 
-    private final static Collection<String> suggestions = new ArrayList<>() { {add("[int]");} };
+    private final static Collection<String> suggestions = new ArrayList<>() { {add("<int>");} };
 
     @Override
     public Collection<String> getSuggestions() {

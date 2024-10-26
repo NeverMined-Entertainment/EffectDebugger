@@ -2,6 +2,7 @@ package org.nevermined.effectdebugger.core.parser;
 
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
@@ -22,6 +23,7 @@ public class DataParserProvider {
         { put(Color.class, new ColorParser()); }
         { put(ItemStack.class, new ItemStackParser()); }
         { put(BlockData.class, new BlockDataParser()); }
+        { put(Particle.DustOptions.class, new DustOptionsParser()); }
     };
 
     public static StringDataParser<?> getDataParser(Class<?> clazz)
