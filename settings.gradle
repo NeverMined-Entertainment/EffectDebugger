@@ -10,6 +10,9 @@ dependencyResolutionManagement {
             url = "https://repo.extendedclip.com/content/repositories/placeholderapi/"
         }
         maven {
+            url "https://libraries.minecraft.net"
+        }
+        maven {
             url = "https://mymavenrepo.com/repo/SjKIru68icwwmC0qOtV7/"
         }
     }

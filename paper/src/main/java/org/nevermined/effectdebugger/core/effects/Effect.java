@@ -1,13 +1,24 @@
 package org.nevermined.effectdebugger.core.effects;
 
+import dev.jorel.commandapi.BukkitTooltip;
+import dev.jorel.commandapi.IStringTooltip;
 import org.bukkit.entity.Player;
 
-import java.util.List;
+import java.util.Arrays;
 
-public interface Effect {
+public interface Effect extends IStringTooltip {
 
     String getIdentifier();
     String[] getOptionalData();
     void emmit(Player player);
+    default String getSuggestion() {
+        return getIdentifier();
+    }
+    default com.mojang.brigadier.Message getTooltip() {
+        return Arrays.stream(getOptionalData())
+                .reduce((s1, s2) -> s1 + ", " + s2)
+                .map(BukkitTooltip::messageFromString)
+                .orElse(BukkitTooltip.messageFromString(""));
+    }
 
 }

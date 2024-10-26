@@ -6,13 +6,11 @@ import org.bukkit.entity.Player;
 
 public class SoundEffect implements KeyedEffect {
     private final Sound sound;
-    private final String[] optionalData = new String[3];
+    private final String[] optionalData = new String[1];
 
     public SoundEffect(Sound sound) {
         this.sound = sound;
         optionalData[0] = "Key: " + getKey().asString();
-        optionalData[1] = "Namespace: " + getKey().namespace();
-        optionalData[2] = "Value: " + getKey().value();
     }
 
     @Override

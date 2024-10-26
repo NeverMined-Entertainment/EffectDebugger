@@ -7,6 +7,7 @@ dependencies {
     compileOnly "com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT"
     implementation "dev.jorel:commandapi-bukkit-shade:9.5.3"
 
+    implementation "com.mojang:brigadier:1.0.18"
     implementation("dev.triumphteam:triumph-gui:3.1.10") {
         exclude group: "net.kyori"
     }
@@ -26,11 +27,12 @@ shadowJar {
     def outputDir = project.hasProperty('shadowJarOutputDir') ? project.shadowJarOutputDir : "${buildDir}/libs"
     destinationDirectory = file(outputDir)
     minimize()
-    relocate "dev.jorel.commandapi", "org.nevermined.worldevents.shadow.commandapi"
-    relocate "dev.triumphteam.gui", "org.nevermined.worldevents.shadow.triumphteam.gui"
-    relocate "com.google.inject", "org.nevermined.worldevents.shadow.google.guice"
-    relocate "com.google.common", "org.nevermined.worldevents.shadow.google.common"
-    relocate "me.wyne.wutils", "org.nevermined.worldevents.shadow.wutils"
+    relocate "dev.jorel.commandapi", "org.nevermined.effectdebugger.shadow.commandapi"
+    //relocate "com.mojang.brigadier", "org.nevermined.effectdebugger.shadow.mojang.brigadier"
+    relocate "dev.triumphteam.gui", "org.nevermined.effectdebugger.shadow.triumphteam.gui"
+    relocate "com.google.inject", "org.nevermined.effectdebugger.shadow.google.guice"
+    relocate "com.google.common", "org.nevermined.effectdebugger.shadow.google.common"
+    relocate "me.wyne.wutils", "org.nevermined.effectdebugger.shadow.wutils"
 }
 
 def targetJavaVersion = 16

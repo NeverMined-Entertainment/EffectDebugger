@@ -11,6 +11,7 @@ import me.wyne.wutils.log.ConfigurableLogConfig;
 import me.wyne.wutils.log.Log;
 import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.nevermined.effectdebugger.command.module.CommandModule;
 import org.nevermined.effectdebugger.core.module.EffectModule;
 import org.nevermined.effectdebugger.module.PluginModule;
 
@@ -37,7 +38,8 @@ public final class EffectDebugger extends JavaPlugin {
             Guice.createInjector(
                     Stage.PRODUCTION,
                     new PluginModule(this),
-                    new EffectModule()
+                    new EffectModule(),
+                    new CommandModule()
             );
         } catch (CreationException e)
         {
