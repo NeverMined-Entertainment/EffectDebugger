@@ -1,8 +1,11 @@
 package org.nevermined.effectdebugger.core.effects;
 
+import me.wyne.wutils.log.Log;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
+import org.nevermined.effectdebugger.EffectDebugger;
+import org.nevermined.effectdebugger.utils.VectorUtils;
 
 public class ParticleEffect implements Effect {
     private final Particle particle;
@@ -25,26 +28,32 @@ public class ParticleEffect implements Effect {
 
     @Override
     public void emmit(Player player) {
-        player.spawnParticle(particle, player.getLocation(), 1);
+        player.spawnParticle(particle,
+                VectorUtils.applyOffset(player.getEyeLocation(), EffectDebugger.getGlobalConfig().particleEffectConfig().getDefaultParticleSpawnOffset()),
+                EffectDebugger.getGlobalConfig().particleEffectConfig().getDefaultParticleCount());
     }
 
     public void emmit(Player player, Vector offset)
     {
-        player.spawnParticle(particle, player.getLocation().add(offset), 1);
+        player.spawnParticle(particle,
+                VectorUtils.applyOffset(player.getEyeLocation(), offset),
+                EffectDebugger.getGlobalConfig().particleEffectConfig().getDefaultParticleCount());
     }
 
     public void emmit(Player player, int count)
     {
-        player.spawnParticle(particle, player.getLocation(), count);
+        player.spawnParticle(particle,
+                VectorUtils.applyOffset(player.getEyeLocation(), EffectDebugger.getGlobalConfig().particleEffectConfig().getDefaultParticleSpawnOffset()),
+                count);
     }
 
     public void emmit(Player player, Vector offset, int count)
     {
-        player.spawnParticle(particle, player.getLocation().add(offset), count);
+        player.spawnParticle(particle, VectorUtils.applyOffset(player.getEyeLocation(), offset), count);
     }
 
     public <T> void emmit(Player player, Vector offset, int count, T data)
     {
-        player.spawnParticle(particle.builder().data(data).particle(), player.getLocation().add(offset), count);
+        player.spawnParticle(particle.builder().data(data).particle(), VectorUtils.applyOffset(player.getEyeLocation(), offset), count);
     }
 }

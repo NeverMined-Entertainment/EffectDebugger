@@ -3,6 +3,7 @@ package org.nevermined.effectdebugger.core.effects;
 import net.kyori.adventure.key.Key;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.nevermined.effectdebugger.EffectDebugger;
 
 public class SoundEffect implements KeyedEffect {
     private final Sound sound;
@@ -25,7 +26,8 @@ public class SoundEffect implements KeyedEffect {
 
     @Override
     public void emmit(Player player) {
-        player.playSound(net.kyori.adventure.sound.Sound.sound(getKey(), net.kyori.adventure.sound.Sound.Source.MASTER, 1f, 1f));
+        player.playSound(net.kyori.adventure.sound.Sound.sound(getKey(), net.kyori.adventure.sound.Sound.Source.MASTER,
+                EffectDebugger.getGlobalConfig().soundEffectConfig().getDefaultVolume(), EffectDebugger.getGlobalConfig().soundEffectConfig().getDefaultPitch()));
     }
 
     public void emmit(Player player, float volume, float pitch)

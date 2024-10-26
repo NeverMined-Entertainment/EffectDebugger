@@ -15,6 +15,8 @@ public interface Effect extends IStringTooltip {
         return getIdentifier();
     }
     default com.mojang.brigadier.Message getTooltip() {
+        if (getOptionalData().length == 1)
+            return BukkitTooltip.messageFromString(getOptionalData()[0]);
         return Arrays.stream(getOptionalData())
                 .reduce((s1, s2) -> s1 + ", " + s2)
                 .map(BukkitTooltip::messageFromString)
