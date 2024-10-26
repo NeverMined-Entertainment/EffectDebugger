@@ -13,19 +13,28 @@ public class ItemCacheProvider {
     private final EffectProvider effectProvider;
     private final GlobalConfig globalConfig;
 
-    private final EffectItemCache soundItemsCache;
+    private final EffectItemCache soundItemCache;
+    private final EffectItemCache particleItemCache;
+    private final EffectItemCache effectItemCache;
+    private final EffectItemCache entityEffectItemCache;
 
     @Inject
     public ItemCacheProvider(EffectProvider effectProvider, GlobalConfig globalConfig) {
         this.effectProvider = effectProvider;
         this.globalConfig = globalConfig;
-        this.soundItemsCache = new EffectItemCache();
+        this.soundItemCache = new EffectItemCache();
+        this.particleItemCache = new EffectItemCache();
+        this.effectItemCache = new EffectItemCache();
+        this.entityEffectItemCache = new EffectItemCache();
         reloadItems();
     }
 
     public void reloadItems()
     {
-        soundItemsCache.reloadItems(effectProvider.getSoundEffectMap(), globalConfig.mainGuiConfig().getSoundsItem().getMaterial());
+        soundItemCache.reloadItems(effectProvider.getSoundEffectMap(), globalConfig.mainGuiConfig().getSoundsItem().getMaterial());
+        particleItemCache.reloadItems(effectProvider.getParticleEffectMap(), globalConfig.mainGuiConfig().getParticlesItem().getMaterial());
+        effectItemCache.reloadItems(effectProvider.getTheEffectMap(), globalConfig.mainGuiConfig().getEffectsItem().getMaterial());
+        entityEffectItemCache.reloadItems(effectProvider.getEntityEffectMap(), globalConfig.mainGuiConfig().getEntityEffectsItem().getMaterial());
     }
 
 }

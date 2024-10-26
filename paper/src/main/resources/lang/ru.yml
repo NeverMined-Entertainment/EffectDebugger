@@ -8,9 +8,15 @@ scroll-gui-back: "&c&lНазад"
 ## Main Gui
 main-gui-header: "Effect debugger"
 main-gui-sounds: "Звуки"
+main-gui-particles: "Частицы"
+main-gui-effects: "Эффекты"
+main-gui-entity-effects: "Энтити Эффекты"
 
-## Queues Gui
+## Effects Gui
 sounds-gui-header: "Звуки"
+particles-gui-header: "Частицы"
+effects-gui-header: "Эффекты"
+entity-effects-gui-header: "Энтити Эффекты"
 
 ### Messages
 

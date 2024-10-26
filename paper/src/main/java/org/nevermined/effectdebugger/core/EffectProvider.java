@@ -9,7 +9,6 @@ import org.nevermined.effectdebugger.core.loaders.*;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 @Singleton
 @Getter
@@ -60,12 +59,5 @@ public class EffectProvider {
     public @Nullable EntityEffect getEntityEffect(String identifier)
     {
         return entityEffectMap.get(identifier);
-    }
-
-    public Map<String, Effect> getEffects(Set<String> identifiers)
-    {
-        Map<String, Effect> result = new HashMap<>();
-        identifiers.forEach(identifier -> result.put(identifier, effectMap.get(identifier)));
-        return result;
     }
 }

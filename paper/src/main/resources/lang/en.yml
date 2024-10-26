@@ -6,11 +6,17 @@ scroll-gui-next: "↓ Forward"
 scroll-gui-back: "&c&lBack"
 
 ## Main Gui
-main-gui-header: "Effect debugger"
+main-gui-header: "Effect Debugger"
 main-gui-sounds: "Sounds"
+main-gui-particles: "Particles"
+main-gui-effects: "Effects"
+main-gui-entity-effects: "Entity Effects"
 
-## Queues Gui
+## Effects Gui
 sounds-gui-header: "Sounds"
+particles-gui-header: "Particles"
+effects-gui-header: "Effects"
+entity-effects-gui-header: "Entity Effects"
 
 ### Messages
 

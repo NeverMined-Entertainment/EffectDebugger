@@ -39,7 +39,7 @@ public class ScrollGuiConfig {
 
     @ConfigEntry(section = "GUI.Scroll Gui", path = "scroll-gui-back")
     private GuiItemConfigurable navigationBack = new GuiItemConfigurable(
-            "common-gui-back",
+            "scroll-gui-back",
             Material.RED_STAINED_GLASS_PANE,
             53,
             -1,
