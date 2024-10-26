@@ -36,6 +36,16 @@ public class TheEffect implements Effect {
     }
 
     @Override
+    public String getCommand() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("edebug ").append(getType().getEffectType());
+        builder.append(" ").append(getSuggestion());
+        if (isDataRequired())
+            builder.append(" ");
+        return builder.toString();
+    }
+
+    @Override
     public void emmit(Player player) {
         player.playEffect(player.getLocation(), effect, null);
     }

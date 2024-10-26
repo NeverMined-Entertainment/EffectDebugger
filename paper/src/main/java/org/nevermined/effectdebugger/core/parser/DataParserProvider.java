@@ -3,6 +3,8 @@ package org.nevermined.effectdebugger.core.parser;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.Potion;
 
 import java.util.HashMap;
@@ -18,6 +20,8 @@ public class DataParserProvider {
         { put(Potion.class, new PotionParser()); }
         { put(Integer.class, new IntegerParser()); }
         { put(Color.class, new ColorParser()); }
+        { put(ItemStack.class, new ItemStackParser()); }
+        { put(BlockData.class, new BlockDataParser()); }
     };
 
     public static StringDataParser<?> getDataParser(Class<?> clazz)

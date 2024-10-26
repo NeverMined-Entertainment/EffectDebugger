@@ -34,6 +34,17 @@ public class SoundEffect implements KeyedEffect {
         return EffectType.SOUND_EFFECT;
     }
 
+    @SuppressWarnings("StringBufferReplaceableByString")
+    @Override
+    public String getCommand() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("edebug ").append(getType().getEffectType());
+        builder.append(" ").append(getSuggestion());
+        builder.append(" ").append(EffectDebugger.getGlobalConfig().soundEffectConfig().getDefaultVolume());
+        builder.append(" ").append(EffectDebugger.getGlobalConfig().soundEffectConfig().getDefaultPitch());
+        return builder.toString();
+    }
+
     @Override
     public void emmit(Player player) {
         player.playSound(net.kyori.adventure.sound.Sound.sound(getKey(), net.kyori.adventure.sound.Sound.Source.MASTER,

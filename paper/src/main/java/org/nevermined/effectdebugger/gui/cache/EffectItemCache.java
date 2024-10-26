@@ -40,11 +40,10 @@ public class EffectItemCache {
                             event.getWhoClicked().sendMessage(
                                     I18n.global.getLegacyPlaceholderComponent(I18n.toLocale(event.getWhoClicked()), event.getWhoClicked(), "error-data-required") // Read line from i18n
                                             .replaceText(TextReplacementConfig.builder().matchLiteral("<command>") // Replace command placeholder with command
-                                                    .replacement(Component.text("/edebug ").append(Component.text(effect.getType().getEffectType()))
-                                                            .append(Component.space()).append(Component.text(effect.getSuggestion())).append(Component.text(" <data>"))
+                                                    .replacement(Component.text(effect.getCommand()).append(Component.text("<data>"))
                                                             .decorate(TextDecoration.UNDERLINED)
                                                             .hoverEvent(HoverEvent.showText(I18n.global.getLegacyPlaceholderComponent(I18n.toLocale(event.getWhoClicked()), event.getWhoClicked(), "info-click-to-suggest")))
-                                                            .clickEvent(ClickEvent.suggestCommand("/edebug " + effect.getType().getEffectType() + " " + effect.getSuggestion() + " "))).build()));
+                                                            .clickEvent(ClickEvent.suggestCommand("/" + effect.getCommand()))).build()));
                             return;
                         }
                         effect.emmit((Player) event.getWhoClicked());

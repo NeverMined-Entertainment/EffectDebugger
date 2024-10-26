@@ -29,6 +29,15 @@ public class EntityEffect implements Effect {
         return EffectType.ENTITY_EFFECT;
     }
 
+    @SuppressWarnings("StringBufferReplaceableByString")
+    @Override
+    public String getCommand() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("edebug ").append(getType().getEffectType());
+        builder.append(" ").append(getSuggestion());
+        return builder.toString();
+    }
+
     @Override
     public void emmit(Player player) {
         player.playEffect(entityEffect);
