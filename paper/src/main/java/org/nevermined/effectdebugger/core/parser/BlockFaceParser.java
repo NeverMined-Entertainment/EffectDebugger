@@ -5,7 +5,7 @@ import org.bukkit.block.BlockFace;
 import java.util.Arrays;
 import java.util.Collection;
 
-public class BlackFaceParser implements StringDataParser<BlockFace> {
+public class BlockFaceParser implements StringDataParser<BlockFace> {
 
     private final static Collection<String> suggestions = Arrays.stream(BlockFace.values()).map(Enum::toString).toList();
 

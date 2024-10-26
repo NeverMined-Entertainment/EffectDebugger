@@ -17,7 +17,7 @@ public class DataParserProvider {
     private final static Map<Class<?>, StringDataParser<?>> parserMap = new HashMap<>()
     {
         { put(Material.class, new MaterialParser()); }
-        { put(BlockFace.class, new BlackFaceParser()); }
+        { put(BlockFace.class, new BlockFaceParser()); }
         { put(Potion.class, new PotionParser()); }
         { put(Integer.class, new IntegerParser()); }
         { put(Color.class, new ColorParser()); }
