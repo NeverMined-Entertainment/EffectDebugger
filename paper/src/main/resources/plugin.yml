@@ -2,6 +2,7 @@ name: EffectDebugger
 version: '${version}'
 main: org.nevermined.effectdebugger.EffectDebugger
 api-version: '1.16'
+softdepend: [ PlaceholderAPI ]
 author: Wyne
 description: Debug minecraft sounds, particles and effects
 website: https://github.com/NeverMined-Entertainment/EffectDebugger

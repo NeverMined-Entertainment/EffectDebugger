@@ -35,6 +35,25 @@ public class EffectItemCache {
                     .name(Component.text(effect.getIdentifier()).decoration(TextDecoration.ITALIC, false))
                     .lore(lore)
                     .asGuiItem(event -> {
+                        if (event.isRightClick())
+                        {
+                            if (!effect.isDataRequired())
+                            {
+                                event.getWhoClicked().sendMessage(Component.text("/" + effect.getCommand())
+                                        .decorate(TextDecoration.UNDERLINED).color(NamedTextColor.GREEN)
+                                        .hoverEvent(HoverEvent.showText(I18n.global.getLegacyPlaceholderComponent(I18n.toLocale(event.getWhoClicked()), event.getWhoClicked(), "info-click-to-suggest")))
+                                        .clickEvent(ClickEvent.suggestCommand("/" + effect.getCommand())));
+                            }
+                            else
+                            {
+                                event.getWhoClicked().sendMessage(Component.text("/" + effect.getCommand()).append(Component.text("<data>"))
+                                        .decorate(TextDecoration.UNDERLINED).color(NamedTextColor.GREEN)
+                                        .hoverEvent(HoverEvent.showText(I18n.global.getLegacyPlaceholderComponent(I18n.toLocale(event.getWhoClicked()), event.getWhoClicked(), "info-click-to-suggest")))
+                                        .clickEvent(ClickEvent.suggestCommand("/" + effect.getCommand())));
+                            }
+                            return;
+                        }
+
                         if (effect.isDataRequired())
                         {
                             event.getWhoClicked().sendMessage(
