@@ -4,6 +4,7 @@ import com.google.inject.Singleton;
 import lombok.Getter;
 import me.wyne.wutils.config.ConfigEntry;
 
+@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
 @Singleton
 public class SoundEffectConfig {
     @ConfigEntry(section = "Effects.Sounds")

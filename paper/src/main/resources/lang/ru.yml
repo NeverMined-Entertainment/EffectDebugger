@@ -1,7 +1,7 @@
 ### Messages
 
 ## Success
-success-plugin-reloaded: "<green>Плагин перезагружен!"
+success-plugin-reloaded: "&aПлагин перезагружен!"
 
 ## Errors
-error-effect-not-found: "<red>Эффект <effect-key> не существует!"
+error-effect-not-found: "&cЭффект <effect-key> не существует!"

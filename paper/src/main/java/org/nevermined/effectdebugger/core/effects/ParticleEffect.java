@@ -9,7 +9,7 @@ import org.nevermined.effectdebugger.utils.VectorUtils;
 
 public class ParticleEffect implements Effect {
     private final Particle particle;
-    private final String[] optionalData = new String[2];
+    private final String[] optionalData = new String[1];
 
     public ParticleEffect(Particle particle) {
         this.particle = particle;

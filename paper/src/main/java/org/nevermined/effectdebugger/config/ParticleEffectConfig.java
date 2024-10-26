@@ -5,6 +5,7 @@ import lombok.Getter;
 import me.wyne.wutils.config.ConfigEntry;
 import org.bukkit.util.Vector;
 
+@SuppressWarnings("FieldMayBeFinal")
 @Singleton
 @Getter
 public class ParticleEffectConfig {

@@ -11,7 +11,6 @@ import me.wyne.wutils.log.ConfigurableLogConfig;
 import me.wyne.wutils.log.Log;
 import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.util.Vector;
 import org.nevermined.effectdebugger.command.module.CommandModule;
 import org.nevermined.effectdebugger.config.GlobalConfig;
 import org.nevermined.effectdebugger.config.module.ConfigModule;
@@ -19,7 +18,6 @@ import org.nevermined.effectdebugger.core.module.EffectModule;
 import org.nevermined.effectdebugger.module.PluginModule;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.Executors;
 
 public final class EffectDebugger extends JavaPlugin {

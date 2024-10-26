@@ -16,12 +16,14 @@ public class EffectDebuggerCommand {
     private final EffectDebugger plugin;
     private final SoundSubCommand soundSubCommand;
     private final ParticleSubCommand particleSubCommand;
+    private final TheEffectSubCommand theEffectSubCommand;
 
     @Inject
     public EffectDebuggerCommand(EffectDebugger plugin, EffectProvider effectProvider, GlobalConfig globalConfig) {
         this.plugin = plugin;
         soundSubCommand = new SoundSubCommand(effectProvider, globalConfig.soundEffectConfig());
         particleSubCommand = new ParticleSubCommand(effectProvider, globalConfig.particleEffectConfig());
+        theEffectSubCommand = new TheEffectSubCommand(effectProvider);
         registerMainCommand();
     }
 
@@ -30,6 +32,7 @@ public class EffectDebuggerCommand {
         new CommandTree("edebug")
                 .then(soundSubCommand.getSubCommand())
                 .then(particleSubCommand.getSubCommand())
+                .then(theEffectSubCommand.getSubCommand())
                 .then(new LiteralArgument("reload")
                         .withPermission(CommandPermission.OP)
                         .executes((sender, args) -> {
