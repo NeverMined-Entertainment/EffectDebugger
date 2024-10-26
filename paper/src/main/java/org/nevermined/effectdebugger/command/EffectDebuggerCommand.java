@@ -49,9 +49,10 @@ public class EffectDebuggerCommand {
                             plugin.reload();
                             sender.sendMessage(I18n.global.getLegacyPlaceholderComponent(I18n.toLocale(sender), sender, "success-plugin-reloaded"));
                         }))
-                .withPermission(CommandPermission.OP)
                 .executesPlayer(((sender, args) ->
                 {
+                    if (!sender.isOp())
+                        return;
                     new MainGui(globalConfig, itemCacheProvider, sender).openGui(sender);
                 }))
                 .register();
