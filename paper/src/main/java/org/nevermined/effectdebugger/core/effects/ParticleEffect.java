@@ -26,6 +26,16 @@ public class ParticleEffect implements Effect {
     }
 
     @Override
+    public boolean isDataRequired() {
+        return particle.getDataType() != Void.class;
+    }
+
+    @Override
+    public EffectType getType() {
+        return EffectType.PARTICLE_EFFECT;
+    }
+
+    @Override
     public void emmit(Player player) {
         player.spawnParticle(particle,
                 VectorUtils.applyOffset(player.getEyeLocation(), EffectDebugger.getGlobalConfig().particleEffectConfig().getDefaultParticleSpawnOffset()),

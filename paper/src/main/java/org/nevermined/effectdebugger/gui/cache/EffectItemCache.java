@@ -3,7 +3,11 @@ package org.nevermined.effectdebugger.gui.cache;
 import dev.triumphteam.gui.builder.item.ItemBuilder;
 import dev.triumphteam.gui.guis.GuiItem;
 import lombok.Getter;
+import me.wyne.wutils.i18n.I18n;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextReplacementConfig;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
@@ -31,6 +35,18 @@ public class EffectItemCache {
                     .name(Component.text(effect.getIdentifier()).decoration(TextDecoration.ITALIC, false))
                     .lore(lore)
                     .asGuiItem(event -> {
+                        if (effect.isDataRequired())
+                        {
+                            event.getWhoClicked().sendMessage(
+                                    I18n.global.getLegacyPlaceholderComponent(I18n.toLocale(event.getWhoClicked()), event.getWhoClicked(), "error-data-required") // Read line from i18n
+                                            .replaceText(TextReplacementConfig.builder().matchLiteral("<command>") // Replace command placeholder with command
+                                                    .replacement(Component.text("/edebug ").append(Component.text(effect.getType().getEffectType()))
+                                                            .append(Component.space()).append(Component.text(effect.getSuggestion())).append(Component.text(" <data>"))
+                                                            .decorate(TextDecoration.UNDERLINED)
+                                                            .hoverEvent(HoverEvent.showText(I18n.global.getLegacyPlaceholderComponent(I18n.toLocale(event.getWhoClicked()), event.getWhoClicked(), "info-click-to-suggest")))
+                                                            .clickEvent(ClickEvent.suggestCommand("/edebug " + effect.getType().getEffectType() + " " + effect.getSuggestion() + " "))).build()));
+                            return;
+                        }
                         effect.emmit((Player) event.getWhoClicked());
                     }));
         }

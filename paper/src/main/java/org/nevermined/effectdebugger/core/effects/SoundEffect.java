@@ -25,6 +25,16 @@ public class SoundEffect implements KeyedEffect {
     }
 
     @Override
+    public boolean isDataRequired() {
+        return false;
+    }
+
+    @Override
+    public EffectType getType() {
+        return EffectType.SOUND_EFFECT;
+    }
+
+    @Override
     public void emmit(Player player) {
         player.playSound(net.kyori.adventure.sound.Sound.sound(getKey(), net.kyori.adventure.sound.Sound.Source.MASTER,
                 EffectDebugger.getGlobalConfig().soundEffectConfig().getDefaultVolume(), EffectDebugger.getGlobalConfig().soundEffectConfig().getDefaultPitch()));

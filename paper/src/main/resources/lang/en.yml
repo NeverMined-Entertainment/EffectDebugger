@@ -20,8 +20,12 @@ entity-effects-gui-header: "Entity Effects"
 
 ### Messages
 
+## Info
+info-click-to-suggest: "&aClick to use"
+
 ## Success
 success-plugin-reloaded: "&aPlugin reloaded!"
 
 ## Errors
 error-effect-not-found: "&cEffect <effect-key> doesn't exist!"
+error-data-required: "&cAdditional data required: <command>"

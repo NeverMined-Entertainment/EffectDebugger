@@ -20,6 +20,16 @@ public class EntityEffect implements Effect {
     }
 
     @Override
+    public boolean isDataRequired() {
+        return false;
+    }
+
+    @Override
+    public EffectType getType() {
+        return EffectType.ENTITY_EFFECT;
+    }
+
+    @Override
     public void emmit(Player player) {
         player.playEffect(entityEffect);
     }

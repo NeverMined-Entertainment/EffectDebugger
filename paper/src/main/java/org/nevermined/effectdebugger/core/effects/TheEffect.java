@@ -26,6 +26,16 @@ public class TheEffect implements Effect {
     }
 
     @Override
+    public boolean isDataRequired() {
+        return effect.getData() != null;
+    }
+
+    @Override
+    public EffectType getType() {
+        return EffectType.THE_EFFECT;
+    }
+
+    @Override
     public void emmit(Player player) {
         player.playEffect(player.getLocation(), effect, null);
     }

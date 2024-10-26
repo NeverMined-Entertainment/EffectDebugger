@@ -10,6 +10,8 @@ public interface Effect extends IStringTooltip {
 
     String getIdentifier();
     String[] getOptionalData();
+    boolean isDataRequired();
+    EffectType getType();
     void emmit(Player player);
     default String getSuggestion() {
         return getIdentifier();
