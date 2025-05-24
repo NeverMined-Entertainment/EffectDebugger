@@ -1,13 +1,12 @@
 package org.nevermined.effectdebugger.gui;
 
 import dev.triumphteam.gui.guis.GuiItem;
-import dev.triumphteam.gui.guis.ScrollingGui;
 import me.wyne.wutils.i18n.language.replacement.Placeholder;
 import net.kyori.adventure.sound.Sound;
 import org.bukkit.entity.Player;
 import org.nevermined.effectdebugger.config.ScrollGuiConfig;
 
-public abstract class ScrollGui extends BaseGui<ScrollingGui> {
+public abstract class PaginatedGui extends BaseGui<dev.triumphteam.gui.guis.PaginatedGui> {
 
     protected void buildNavigation(BaseGui previousGui, ScrollGuiConfig config, Player player)
     {

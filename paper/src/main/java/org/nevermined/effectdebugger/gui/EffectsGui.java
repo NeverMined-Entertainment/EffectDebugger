@@ -1,22 +1,20 @@
 package org.nevermined.effectdebugger.gui;
 
 import dev.triumphteam.gui.builder.item.ItemBuilder;
-import dev.triumphteam.gui.components.ScrollType;
 import dev.triumphteam.gui.guis.Gui;
 import me.wyne.wutils.i18n.I18n;
 import org.bukkit.entity.Player;
 import org.nevermined.effectdebugger.config.ScrollGuiConfig;
 import org.nevermined.effectdebugger.gui.cache.EffectItemCache;
 
-public class EffectsGui extends ScrollGui {
+public class EffectsGui extends PaginatedGui {
 
     public EffectsGui(MainGui mainGui, ScrollGuiConfig config, EffectItemCache itemCache, String header, Player player)
     {
-        gui = Gui.scrolling()
+        gui = Gui.paginated()
                 .title(I18n.global.getLegacyPlaceholderComponent(player.locale(), player, header))
                 .rows(6)
                 .pageSize(45)
-                .scrollType(ScrollType.VERTICAL)
                 .disableAllInteractions()
                 .create();
         gui.getFiller().fillBottom(ItemBuilder.from(config.getFooter().getMaterial()).asGuiItem());
