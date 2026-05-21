@@ -54,7 +54,8 @@ public class ParticleEffect implements Effect {
     public void emmit(Player player) {
         player.spawnParticle(particle,
                 VectorUtils.applyOffset(player.getEyeLocation(), EffectDebugger.getGlobalConfig().particleEffectConfig().getDefaultParticleSpawnOffset()),
-                EffectDebugger.getGlobalConfig().particleEffectConfig().getDefaultParticleCount());
+                EffectDebugger.getGlobalConfig().particleEffectConfig().getDefaultParticleCount(), 0f, 0f, 0f,
+                EffectDebugger.getGlobalConfig().particleEffectConfig().getDefaultParticleExtra());
     }
 
     public void emmit(Player player, Vector offset)

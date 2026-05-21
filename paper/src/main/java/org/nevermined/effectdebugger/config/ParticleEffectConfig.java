@@ -15,6 +15,6 @@ public class ParticleEffectConfig {
     @ConfigEntry(section = "Effects.Particles")
     private int defaultParticleCount = 10;
     @ConfigEntry(section = "Effects.Particles")
-    private double defaultParticleExtra = 1.0d;
+    private double defaultParticleExtra = 0.0d;
 
 }
